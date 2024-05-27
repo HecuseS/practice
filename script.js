@@ -38,6 +38,8 @@ div.appendChild(button);
 
 //task7
 //https://getbootstrap.com/docs/5.0/forms/validation/
+
+
 let my_form = document.createElement('form');
 my_form.classList.add('row');
 my_form.classList.add('g-3');
@@ -46,7 +48,61 @@ my_form.setAttribute('novalidate',"");
   
 bod.appendChild(my_form);
 
-//login
+
+my_form.innerHTML = '<div class= "col-md-4">' +
+'<label for="validationCustom01" class="form-label">Login</label>' +
+  '<input type="text" class="form-control" id="validationCustom01" value="Hecuses" required>' +
+  '<div class="valid-feedback">' +
+    'Looks good!' +
+  '</div>' +
+'</div>' +
+'<div class="col-md-4">' +
+  '<label for="inputPassword4" class="form-label">Password</label>' +
+  '<input type="password" class="form-control" id="inputPassword4">' +
+  '<div class="valid-feedback">' +
+    'Looks good!' +
+  '</div>' +
+'</div>' +
+'<div class="col-md-4">' +
+  '<label for="inputEmail4" class="form-label">Email</label>' +
+  '<input type="email" class="form-control" id="inputEmail4">' +    
+'</div>' +
+
+'<div class="col-md-3">' +
+  '<label for="validationCustom04" class="form-label">State</label>' +
+  '<select class="form-select" id="validationCustom04" required>' +
+    '<option selected disabled value="">Choose...</option>' +
+    '<option value="1">One</option>' +
+    '<option value="2">Two</option>' +
+    '<option value="3">Three</option>' +
+  '</select>' +
+  '<div class="invalid-feedback">' +
+    'Please select a valid state.' +
+  '</div>' +
+'</div>' +
+'<div class="col-md-3">' +
+  '<label for="validationCustom05" class="form-label">Zip</label>' +
+  '<input type="text" class="form-control" id="validationCustom05" required>' +
+  '<div class="invalid-feedback">' +
+    'Please provide a valid zip.' +
+  '</div>' +
+'</div>' +
+'<div class="col-12">' +
+  '<div class="form-check">' +
+    '<input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>' +
+    '<label class="form-check-label" for="invalidCheck">' +
+      'Agree to terms and conditions' +
+    '</label>' +
+    '<div class="invalid-feedback">' +
+      'You must agree before submitting.' +
+    '</div>' +
+  '</div>' +
+'</div>' +
+'<div class="col-12">' +
+  '<button class="btn btn-primary" type="submit">Submit form</button>' +
+'</div>';
+
+/*//login
 let div_login = document.createElement('div'); 
 
 my_form.appendChild(div_login);
@@ -134,7 +190,7 @@ input_email.classList.add('form-control');
 input_email.setAttribute('id','floatingInputValue');
 input_email.classList.add('container');
 
-div_email.appendChild(input_email);
+div_email.appendChild(input_email);*/
 
 //date
 
