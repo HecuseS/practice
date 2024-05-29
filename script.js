@@ -58,7 +58,7 @@ my_form.innerHTML = '<div class= "col-md-4">' +
 '</div>' +
 '<div class="col-md-4">' +
   '<label for="inputPassword4" class="form-label">Password</label>' +
-  '<input type="password" class="form-control" id="inputPassword4">' +
+  '<input type="password" class="form-control" id="inputPassword4" required>' +
   '<div class="valid-feedback">' +
     'Looks good!' +
   '</div>' +
@@ -101,6 +101,7 @@ my_form.innerHTML = '<div class= "col-md-4">' +
 '<div class="col-12">' +
   '<button class="btn btn-primary" type="submit">Submit form</button>' +
 '</div>';
+
 
 /*//login
 let div_login = document.createElement('div'); 
@@ -195,13 +196,31 @@ div_email.appendChild(input_email);*/
 //date
 
 //кнопка
-let div_btn = document.createElement('div');
+/*let div_btn = document.createElement('div');
 div_btn.classList.add('btn');
 div_btn.classList.add('btn-primary');
 div_btn.setAttribute('type','submit');
 div_btn.innerText = 'Submit form';
 input_password.classList.add('container');
 
-bod.appendChild(div_btn);
+bod.appendChild(div_btn);*/
 
+(function () {
+  'use strict'
 
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
