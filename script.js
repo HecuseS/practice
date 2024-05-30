@@ -11,23 +11,22 @@ let bod = document.getElementsByTagName('body')[0];
 bod.appendChild(button);
 //task4
 
-let changeColor = () =>
-    {
-        htmlEnternet.classList.remove('text-danger');
-        htmlEnternet.classList.add('text-success');
+let changeColor = () => {
+  htmlEnternet.classList.remove('text-danger');
+  htmlEnternet.classList.add('text-success');
 
-        button.removeEventListener('click', changeColor);
+  button.removeEventListener('click', changeColor);
 
-        button.addEventListener('click', () => {
- //task5
-            htmlEnternet.classList.remove('text-success');
-            htmlEnternet.classList.add('text-primary');
-               
-          });
-    }
+  button.addEventListener('click', () => {
+    //task5
+    htmlEnternet.classList.remove('text-success');
+    htmlEnternet.classList.add('text-primary');
+
+  });
+}
 
 button.addEventListener('click', changeColor);
- 
+
 //task6
 var div = document.createElement('div');
 document.body.appendChild(div);
@@ -44,64 +43,55 @@ let my_form = document.createElement('form');
 my_form.classList.add('row');
 my_form.classList.add('g-3');
 my_form.classList.add('needs-validation');
-my_form.setAttribute('novalidate',"");
-  
+my_form.setAttribute('novalidate', "");
+
 bod.appendChild(my_form);
 
 
-my_form.innerHTML = '<div class= "col-md-4">' +
-'<label for="validationCustom01" class="form-label">Login</label>' +
-  '<input type="text" class="form-control" id="validationCustom01" value="Hecuses" required>' +
+my_form.innerHTML = 
+'<div class= "col-md-4">' +
+  '<label for="validationCustom01" class="form-label">Login</label>' +
+  '<input type="text" class="form-control" id="validationCustom01" required>' +
   '<div class="valid-feedback">' +
-    'Looks good!' +
+  'Looks good!' +
   '</div>' +
 '</div>' +
 '<div class="col-md-4">' +
   '<label for="inputPassword4" class="form-label">Password</label>' +
   '<input type="password" class="form-control" id="inputPassword4" required>' +
   '<div class="valid-feedback">' +
-    'Looks good!' +
+  'Looks good!' +
   '</div>' +
 '</div>' +
 '<div class="col-md-4">' +
   '<label for="inputEmail4" class="form-label">Email</label>' +
-  '<input type="email" class="form-control" id="inputEmail4">' +    
+  '<input type="email" class="form-control" id="inputEmail4" required>' +
+  '<div class="valid-feedback">' +
+  'Looks good!' +
+  '</div>' +
 '</div>' +
-
 '<div class="col-md-3">' +
-  '<label for="validationCustom04" class="form-label">State</label>' +
+  '<label for="validationCustom04" class="form-label">Rh factor</label>' +
   '<select class="form-select" id="validationCustom04" required>' +
-    '<option selected disabled value="">Choose...</option>' +
-    '<option value="1">One</option>' +
-    '<option value="2">Two</option>' +
-    '<option value="3">Three</option>' +
+  '<option selected disabled value="">Choose Rh</option>' +
+  '<option value="1">Rh+</option>' +
+  '<option value="2">Rh-</option>' +
   '</select>' +
   '<div class="invalid-feedback">' +
-    'Please select a valid state.' +
+  'Please select a valid Rh factor.' +
   '</div>' +
 '</div>' +
 '<div class="col-md-3">' +
-  '<label for="validationCustom05" class="form-label">Zip</label>' +
-  '<input type="text" class="form-control" id="validationCustom05" required>' +
-  '<div class="invalid-feedback">' +
-    'Please provide a valid zip.' +
-  '</div>' +
+  '<label for="startDate" class="form-label">Date of birth</label>' +
+  '<input id="startDate" class="form-control" type="date" required>' +
 '</div>' +
-'<div class="col-12">' +
-  '<div class="form-check">' +
-    '<input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>' +
-    '<label class="form-check-label" for="invalidCheck">' +
-      'Agree to terms and conditions' +
-    '</label>' +
-    '<div class="invalid-feedback">' +
-      'You must agree before submitting.' +
-    '</div>' +
-  '</div>' +
-'</div>' +
-'<div class="col-12">' +
+  '<div class="col-12">' +
   '<button class="btn btn-primary" type="submit">Submit form</button>' +
-'</div>';
+  '</div>';
 
+
+let startDate = document.getElementById('startDate');
+startDate.addEventListener('change', (e) => { });
 
 /*//login
 let div_login = document.createElement('div'); 
@@ -208,19 +198,33 @@ bod.appendChild(div_btn);*/
 (function () {
   'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
+  var forms = document.querySelectorAll('.needs-validation');
+  let isFormValid = true;
 
-  // Loop over them and prevent submission
+
+  const Http = new XMLHttpRequest();
+  const url = 'https://sobaka-ne-sutulaya.net';
+
   Array.prototype.slice.call(forms)
     .forEach(function (form) {
       form.addEventListener('submit', function (event) {
         if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
+          event.preventDefault();
+          event.stopPropagation();
+          isFormValid = false;
         }
 
-        form.classList.add('was-validated')
+        form.classList.add('was-validated');
       }, false)
     })
+
+    if(isFormValid == true){
+      Http.open("GET", url);
+      Http.send();
+      Http.onreadystatechange = (e) => {
+        console.log(Http.responseText);  // => получим массив данных в формате JSON
+      }
+
+    }
+
 })()
